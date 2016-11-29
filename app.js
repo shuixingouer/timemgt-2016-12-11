@@ -9,13 +9,17 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var register = require('./routes/register');
-var channel = require('./routes/channel');
+//var channel = require('./routes/channel');
 var detail = require('./routes/detail');
+
+var mgtLogin = require('./routes/mgt/login');
+var mgtRegister = require('./routes/mgt/register');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views/mgt'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -30,9 +34,11 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/channel', channel);
+//app.use('/channel', channel);
 app.use('/detail', detail);
 
+app.use('/mgt/login', mgtLogin);
+app.use('/mgt/register', mgtRegister);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
