@@ -6,6 +6,8 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/weui.css'/>
     <link rel='stylesheet' href='/stylesheets/example.css'/>
+    <link rel="stylesheet/less" href="/less/index.less">
+    <script src="/javascripts/less.min.js"></script>
   </head>
   <body>
     <div class="page input js_show">
@@ -55,59 +57,59 @@
               <div class="weui-panel">
                     <!--九宫格布局开始-->
                     <div class="weui-grids">
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=0" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">Html/Css</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=1" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">JS/JQ</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=2" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">Node</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=3" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">前端工具</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=4" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">前端框架</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=5" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">前端UI</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=6" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">趣闻</p>
                       </a>
-                      <a href="javascript:;" class="weui-grid">
-                        <div class="weui-grid__icon">
-                          <img src="/images/icon_tabbar.png" alt="">
-                        </div>
-                        <p class="weui-grid__label">生活</p>
-                      </a>
-                      <a href="javascript:;" class="weui-grid">
+                      <a href="/channel?type=7" class="weui-grid">
                         <div class="weui-grid__icon">
                           <img src="/images/icon_tabbar.png" alt="">
                         </div>
                         <p class="weui-grid__label">鸡汤</p>
+                      </a>
+                      <a href="/channel?type=8" class="weui-grid">
+                        <div class="weui-grid__icon">
+                          <img src="/images/icon_tabbar.png" alt="">
+                        </div>
+                        <p class="weui-grid__label">日历</p>
                       </a>
                     </div>
                     <!--九宫格布局结束-->
@@ -135,6 +137,7 @@
                     <div class="weui-media-box__bd">
                       <h4 class="weui-media-box__title"><%= data[i].title %></h4>
                       <p class="weui-media-box__desc"><%= data[i].desc %></p>
+                      <p class="weui-media-box__time"><%= data[i].time %></p>
                     </div>
                   </a>
                   <% } %>
@@ -381,75 +384,30 @@
     <!--下面是最下图标切换特效-->
     <script type="text/javascript">
       $(function(){
-        $(".tab_panel_2").hide();
-        $(".tab_panel_3").hide();
+        $(".tab_panel_1").fadeIn(200).addClass('slideIn');
+        $(".tab_panel_2").fadeOut(200).removeClass('slideIn');
+        $(".tab_panel_3").fadeOut(200).removeClass('slideIn');
         $('.weui-tabbar__item').on('click', function () {
           $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
           if ($(".weui-tabbar__item").index(this) == 0) {
-            $(".tab_panel_1").show();
-            $(".tab_panel_2").hide();
-            $(".tab_panel_3").hide();
+            $(".tab_panel_1").fadeIn(200).addClass('slideIn');
+            $(".tab_panel_2").fadeOut(200).removeClass('slideIn');
+            $(".tab_panel_3").fadeOut(200).removeClass('slideIn');
           } else {
             if ($(".weui-tabbar__item").index(this) == 1) {
-              $(".tab_panel_2").show();
-              $(".tab_panel_1").hide();
-              $(".tab_panel_3").hide();
+              $(".tab_panel_2").fadeIn(200).addClass('slideIn');
+              $(".tab_panel_1").fadeOut(200).removeClass('slideIn');
+              $(".tab_panel_3").fadeOut(200).removeClass('slideIn');
             } else {
               if ($(".weui-tabbar__item").index(this) == 2) {
-                $(".tab_panel_3").show();
-                $(".tab_panel_1").hide();
-                $(".tab_panel_2").hide();
-              } else {
-                if ($(".weui-tabbar__item").index(this) == 3) {
-                  $(".tab_panel_4").show();
-                  $(".tab_panel_1").hide();
-                  $(".tab_panel_2").hide();
-                }
+                $(".tab_panel_3").fadeIn(200).addClass('slideIn');
+                $(".tab_panel_1").fadeOut(200).removeClass('slideIn');
+                $(".tab_panel_2").fadeOut(200).removeClass('slideIn');
               }
-            }
-          }
-
-        });
-      });
-    </script>
-    <script type="text/javascript" class="js_show home">
-      $(function(){
-        var winH = $(window).height();
-        var categorySpace = 10;
-        $('.js_category').on('click', function(){
-          var $this = $(this),
-                  $inner = $this.next('.js_categoryInner'),
-                  $page = $this.parents('.page'),
-                  $parent = $(this).parent('li');
-          var innerH = $inner.data('height');
-          bear = $page;
-
-          if(!innerH){
-            $inner.css('height', 'auto');
-            innerH = $inner.height();
-            $inner.removeAttr('style');
-            $inner.data('height', innerH);
-          }
-
-          if($parent.hasClass('js_show')){
-            $parent.removeClass('js_show');
-          }else{
-            $parent.siblings().removeClass('js_show');
-
-            $parent.addClass('js_show');
-            if(this.offsetTop + this.offsetHeight + innerH > $page.scrollTop() + winH){
-              var scrollTop = this.offsetTop + this.offsetHeight + innerH - winH + categorySpace;
-
-              if(scrollTop > this.offsetTop){
-                scrollTop = this.offsetTop - categorySpace;
-              }
-
-              $page.scrollTop(scrollTop);
             }
           }
         });
       });
     </script>
-    <script></script>
   </body>
 </html>
