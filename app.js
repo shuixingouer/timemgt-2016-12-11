@@ -14,6 +14,7 @@ var detail = require('./routes/detail');
 
 var mgtLogin = require('./routes/mgt/login');
 var mgtRegister = require('./routes/mgt/register');
+var mgtIndex = require('./routes/mgt/index');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/detail', detail);
 
 app.use('/mgt/login', mgtLogin);
 app.use('/mgt/register', mgtRegister);
+app.use('/mgt/index', mgtIndex);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
