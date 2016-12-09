@@ -3,7 +3,9 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser')
+
+//var exphbs = require('express-handlebars');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,15 +18,24 @@ var mgtLogin = require('./routes/mgt/login');
 var mgtRegister = require('./routes/mgt/register');
 var mgtIndex = require('./routes/mgt/index');
 
+var chatIndex = require('./routes/chat/index');
+
 var app = express();
+
+//chat聊天室的引用
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+//app.engine('.html', exphbs({
+//  partialsDir:'views',
+//  extname: '.ejs'
+//}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('views', path.join(__dirname, 'views/mgt'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,6 +52,8 @@ app.use('/detail', detail);
 app.use('/mgt/login', mgtLogin);
 app.use('/mgt/register', mgtRegister);
 app.use('/mgt/index', mgtIndex);
+
+app.use('/chat/index', chatIndex);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
