@@ -22,9 +22,10 @@ var chatIndex = require('./routes/chat/index');
 
 var app = express();
 
-//chat�����ҵ�����
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+//chat�����ҵ�����
+//var http = require('http').Server(app);
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 //app.engine('.html', exphbs({
 //  partialsDir:'views',
 //  extname: '.ejs'
@@ -73,4 +74,24 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+
+
+//聊天室
+var map ={};
+var rooms={};
+var idsocket ={};
+io.on('connection', function(socket){
+//打开页面出现的消息
+//  socket.emit('news', '您好，欢迎光临-时间管理，请问有什么可以帮助您的吗？');
+//  socket.on('my first event', function (data) {
+//  });
+//用户发送的消息
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+
+});
+
+server.listen(3100);
 module.exports = app;
